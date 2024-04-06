@@ -128,12 +128,20 @@ import random
 #             os.system('clear')
 #             break
 
+class Foo:
+    pass
+
+
+
+class Bar:
+    pass
+
 
 # # 11. BlackJack
 cards =  [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 def print_stats(player_cards, ai_cards):
-    print(f"\tYou cards: {player_cards}, current score: {sum(player_cards)}")
-    print(f"\tComputer's first card: {ai_cards[0]}")
+    print(f"\tyou cards: {player_cards}, current score: {sum(player_cards)}")
+    print(f"\tcomputer's fiwst card: {ai_cards[0]}")
 
 def play_game():
     player_cards = []
