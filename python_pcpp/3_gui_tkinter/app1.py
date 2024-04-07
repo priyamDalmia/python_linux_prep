@@ -1,12 +1,40 @@
-import tkinter as tk 
+import tkinter as tk
 
+def on_off():
+    global switch
+    if switch:
+        label.unbind("<Button-1>")
+    else:
+        label.bind("<Button-1>", rhyme)
+    switch = not switch
 
-def on_click() -> None:
-    myapp.destroy()
+def rhyme(dummy):
+    global word_no, words
+    word_no += 1
+    label.config(text=words[word_no % len(words)])
 
-myapp = tk.Tk()
-myapp.title("Testp!")
-button = tk.Button(myapp, text='Button', command=on_click)
-# button.pack()
-button.place(x=15, y=10)
-myapp.mainloop()
+def blink():
+    global is_white
+    if is_white:
+        color = 'black'
+    else:
+        color = 'white'
+    is_white = not is_white
+    frame.config(bg=color)
+    frame.after(500, blink)
+
+is_white = True
+switch = True
+words = ["Old", "McDonald", "Had", "A", "Farm"]
+word_no = 0
+window = tk.Tk()
+button = tk.Button(window, text="On/Off", command=on_off)
+button.pack()
+label = tk.Label(window, text=words[0])
+label.bind("<Button-1>", rhyme)
+label.pack()
+
+frame = tk.Frame(window, width=200, height=100, bg='white')
+frame.after(500, blink)
+frame.pack()
+window.mainloop()
